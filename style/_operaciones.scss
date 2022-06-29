@@ -1,0 +1,132 @@
+$ancho: 600px;
+$blues:blue;
+$green:green;
+/*operaciones / - */
+.box1{
+    background-color: $blues;
+    width: $ancho/2;
+    height: 50px;
+}
+
+.box2{
+    background-color: $green;
+    width: ($ancho/2)-50px;
+    height: 50px;
+}
+
+/*condicionales IF: (==, !=,>,<)*/
+
+$animal:otro;
+
+
+p{
+    @if $animal == gato {
+    color:blue;
+}
+@else if $animal == perro {
+    color:red;
+}
+@else {
+    color:black;
+}
+
+}
+
+$mostrar:true;
+.box3{
+    @if $mostrar {
+        border: 2px dashed red;
+        
+    }
+}
+
+/*bucle*/
+
+$i:1;
+@for $i from 1 through 4{
+   .todo-#{$i}{
+    background-color: green;
+    color:white;
+    width: 200px*$i;
+   }    
+}
+
+/*each las imagenes y la class igual*/
+$dimension:300px;
+
+@each $auto in auto1, auto2, auto4{
+    .#{$auto}-fondo{
+        width: $dimension*2;
+        height: $dimension;
+        background-image: url("../img/#{$auto}.jpg");
+        border:4px solid black;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+}
+
+/*mapas*/
+
+$redes:(
+    twitter: rgb(132, 132, 225),
+    facebook: #3a5795,
+    instagram: #c25e30,  
+);
+
+
+
+@each $red , $color in $redes {
+    .btn--#{$red}{
+        background-color:$color;
+    }
+    
+}
+
+/*extend*/
+
+.redSocial{
+    border:2px solid red;
+    background-color: gold;
+}
+
+
+/*aplica el extend prefabricado*/
+.pajarito{
+    @extend .redSocial;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: aliceblue;
+    border-radius: 5px;
+}
+
+.cara{
+    @extend .redSocial;
+    font-size: 25px;
+    color: black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: dashed green;
+}
+
+.insta{
+    @extend .redSocial;
+}
+
+/*mixing parametros*/
+
+
+@mixin size ($width, $height){
+    height: $height;
+    width: $width;
+}
+
+.mixPrueba{
+    @include size (500px,100px);
+    background-color: lightblue;
+    font-size: 50px; 
+}
+
+
+
+
+
